@@ -1,0 +1,50 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Gestionar autor{% endblock %}
+
+{% block cuerpo %}
+        <h1>Gestionar autor</h1>
+
+        <div class="jumbotron">
+        {% if autor %}
+            <form id="crear_autor" method="post" action="/libreria/modificar_autor/{{autor.id}}/">
+        {% else %}
+            <form id="crear_autor" method="post" action="/libreria/crear_autor">
+        {% endif %}
+
+            {% csrf_token %}
+
+            {% for field in form.visible_fields %}
+                <div class="control-group {{ field.html_name }} {% if field.errors %}error{% endif %}">
+                    <label class="control-label">{{ field.help_text }}</label>
+                    <div class="controls">
+                        {{ field }}
+                        {% if field.errors %}<span class="help-inline">&nbsp;&nbsp;{{ field.errors.as_text }}</span>{% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+
+            {% if form.errors %}
+                <br>
+                <div class="alert alert-danger" role="alert">
+                    Datos no enviados.
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <br>
+            {% endif %}
+
+            <div class="form-actions">
+                <input class="btn btn-primary btn-sm" type="submit" value="Aceptar"/>
+            </div>
+        </form>
+        </div>
+
+{%endblock%}

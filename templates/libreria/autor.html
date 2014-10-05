@@ -1,0 +1,34 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}{{ autor.nombre }} {{ autor.apellidos }}{% endblock %}
+
+{% block cuerpo %}
+
+{% if autor %}
+    <h1>{{ autor.nombre }} {{ autor.apellidos }}</h1>
+
+    Fecha de nacimiento: {{ autor.fecha_nacimiento }}
+
+    <br><br><br>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Obras del autor</div>
+      <table class="table table-striped">
+        {% for libro in libros %}
+          <tr>
+            <td><a href="/libreria/libro/{{libro.id}}">{{ libro.nombre }}</a></td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.genero}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <!--<a href="/libreria/crear_libro//"><button type="button" class="btn btn-primary btn-sm">Añadir libro</button></a>-->
+    <a href="/libreria/modificar_autor/{{autor.id}}/"><button type="button" class="btn btn-primary btn-sm">Modificar datos del autor</button></a>
+    <a href="/libreria/borrar_autor/{{autor.id}}/"><button type="button" class="btn btn-danger btn-sm">Eliminar autor</button></a>
+{% else %}
+    <strong>Este autor no existe en la base de datos.</strong>
+{% endif %}
+
+{% endblock %}

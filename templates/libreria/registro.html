@@ -1,0 +1,44 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Nuevo usuario{% endblock %}
+
+{% block cuerpo %}
+<h1>Nuevo usuario</h1>
+    <div class="bs-callout bs-callout-info">
+        {% if registrado %}
+            <dl class="dl-horizontal">
+                <dt>Datos guardados</dt>
+                <dd><a href="/libreria">Volver a la página principal</a></dd>
+            </dl>
+        {% else %}
+            <form id="form" method="post" action="/libreria/registro/" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form.visible_fields %}
+                <div class="control-group">
+                    <label class="control-label">{{ field.label }}</label>
+                    <div class="controls">
+                        {{ field }}
+                        {% if field.errors %}<span class="help-inline">&nbsp;&nbsp;{{ field.errors.as_text }}</span>{% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% if form.errors %}
+                <br>
+                <div class="alert alert-danger" role="alert">
+                    Datos no enviados.
+                </div>
+            {% else %}
+                <br>
+            {% endif %}
+
+
+            <div class="form-actions">
+                <input class="btn btn-primary btn-sm" type="submit" value="Aceptar"/>
+            </div>
+
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

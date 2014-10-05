@@ -1,0 +1,25 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Identificación de usuario{% endblock %}
+
+{% block cuerpo %}
+<h1>Identificación de usuario</h1>
+
+<form id="login_form" method="post" action="/libreria/login/">
+    {% csrf_token %}
+    <div class="bs-callout bs-callout-info">
+        <dl class="dl-horizontal">
+            <dt>Usuario</dt>
+            <dd><input type="text" name="username" value="" /></dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>Contraseña</dt>
+            <dd><input type="password" name="password" value=""/></dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd><input type="submit" class="btn btn-primary btn-sm" type="submit" value="Aceptar" /></dd>
+        </dl>
+    </div>
+</form>
+{% endblock %}

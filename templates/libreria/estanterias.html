@@ -1,0 +1,28 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Autores{% endblock %}
+
+{% block cuerpo %}
+
+<h1>Estanterías</h1><br>
+
+{% if estanterias %}
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Descripción</div>
+        <table class="table table-striped">
+            {% for estanteria in estanterias %}
+            <tr>
+                <td><a href="/libreria/estanteria/{{ estanteria.id }}">{{ estanteria.nombre}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+    <strong>No hay estanterías en la base de datos.</strong><br><br>
+{% endif %}
+
+    <a href="/libreria/crear_estanteria/"><button type="button" class="btn btn-primary btn-sm">Crear estantería</button></a>
+
+{%endblock%}

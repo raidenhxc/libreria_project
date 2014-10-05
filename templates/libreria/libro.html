@@ -1,0 +1,35 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}{{ libro.nombre }}{% endblock %}
+
+{% block cuerpo %}
+
+{% if libro %}
+    <h1>{{ libro.nombre }}</h1>
+
+    <div class="bs-callout bs-callout-info">
+        <dl class="dl-horizontal">
+          <dt>Autor</dt>
+          <dd><a href="/libreria/autor/{{libro.autor.id}}">{{ libro.autor }}</a></dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Fecha de publicaci&oacute;n</dt>
+          <dd>{{ libro.fecha_publicacion }}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Género</dt>
+          <dd>{{ libro.genero }}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Estantería</dt>
+          <dd>{{ libro.estanteria }}</dd>
+        </dl>
+    </div>
+
+    <a href="/libreria/modificar_libro/{{libro.id}}/"><button type="button" class="btn btn-primary btn-sm">Modificar libro</button></a>
+    <a href="/libreria/borrar_libro/{{libro.id}}/"><button type="button" class="btn btn-danger btn-sm">Eliminar libro</button></a>
+{% else %}
+    <strong>Este libro no existe en la base de datos.</strong>
+{% endif %}
+
+{% endblock %}

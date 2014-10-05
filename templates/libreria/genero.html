@@ -1,0 +1,34 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}{{ genero.nombre }}{% endblock %}
+
+{% block cuerpo %}
+
+{% if genero %}
+    <h1>{{ genero.nombre }}</h1>
+
+    <br>
+
+    <div class="panel panel-default">
+
+      <div class="panel-heading">Obras del género</div>
+      <table class="table table-striped">
+        {% for libro in libros %}
+          <tr>
+            <td>{{ libro.nombre }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.genero}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+
+
+    </div>
+
+    <a href="/libreria/modificar_genero/{{genero.id}}/"><button type="button" class="btn btn-primary btn-sm">Modificar nombre del género</button></a>
+    <a href="/libreria/borrar_genero/{{genero.id}}/"><button type="button" class="btn btn-danger btn-sm">Eliminar género</button></a>
+{% else %}
+    <strong>Este género no existe en la base de datos.</strong>
+{% endif %}
+
+{% endblock %}

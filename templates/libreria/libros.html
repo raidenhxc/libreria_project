@@ -1,0 +1,38 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Libros{% endblock %}
+
+{% block cuerpo %}
+
+<h1>Libros</h1><br>
+
+{% if libros %}
+
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr class="active">
+                    <td>Título</td>
+                    <td>Autor</td>
+                    <td>Fecha</td>
+                    <td>Género</td>
+                    <td>Estantería</td>
+                </tr>
+            </thead>
+            {% for libro in libros %}
+            <tr>
+                <td><a href="/libreria/libro/{{ libro.id }}">{{ libro.nombre}}</a></td>
+                <td>{{ libro.autor}}</td>
+                <td>{{ libro.fecha_publicacion}}</td>
+                <td>{{ libro.genero}}</td>
+                <td>{{ libro.estanteria}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+{% else %}
+    <strong>No hay libros registrados.</strong><br><br>
+{% endif %}
+
+    <a href="/libreria/crear_libro/"><button type="button" class="btn btn-primary btn-sm">Crear libro</button></a>
+
+{%endblock%}

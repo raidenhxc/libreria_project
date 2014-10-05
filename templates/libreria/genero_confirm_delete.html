@@ -1,0 +1,14 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Librer&iacute;a - Eliminar elemento{% endblock %}
+
+{% block cuerpo %}
+<h1>Borrar género</h1>
+<form action="" method="post">{% csrf_token %}
+    <p>¿Seguro que quieres borrar "{{ object }}"?</p>
+            <div class="form-actions">
+                <input class="btn btn-danger btn-sm" type="submit" value="Confirmar"/>
+            </div>
+</form>
+
+{% endblock %}

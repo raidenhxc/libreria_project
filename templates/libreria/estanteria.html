@@ -1,0 +1,29 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}{{ estanteria.nombre }}{% endblock %}
+
+{% block cuerpo %}
+
+{% if estanteria %}
+    <h1>{{ estanteria.nombre }}</h1>
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading">Obras en esta estantería</div>
+      <table class="table table-striped">
+        {% for libro in libros %}
+          <tr>
+            <td>{{ libro.nombre }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.genero}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <a href="/libreria/modificar_estanteria/{{estanteria.id}}/"><button type="button" class="btn btn-primary btn-sm">Modificar nombre de la estantería</button></a>
+    <a href="/libreria/borrar_estanteria/{{estanteria.id}}/"><button type="button" class="btn btn-danger btn-sm">Eliminar estantería</button></a>
+{% else %}
+    <strong>Este estantería no existe en la base de datos.</strong>
+{% endif %}
+
+{% endblock %}

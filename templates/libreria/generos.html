@@ -1,0 +1,28 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Géneros{% endblock %}
+
+{% block cuerpo %}
+
+<h1>Géneros</h1><br>
+
+{% if generos %}
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Descripción</div>
+        <table class="table table-striped">
+            {% for genero in generos %}
+            <tr>
+                <td><a href="/libreria/genero/{{ genero.id }}">{{ genero.nombre}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+    <strong>No hay géneros.</strong><br><br>
+{% endif %}
+
+    <a href="/libreria/crear_genero/"><button type="button" class="btn btn-primary btn-sm">Crear género</button></a>
+
+{%endblock%}

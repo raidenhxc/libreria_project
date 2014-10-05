@@ -1,0 +1,28 @@
+{% extends 'libreria/base.html' %}
+
+{% block titulo %}Autores{% endblock %}
+
+{% block cuerpo %}
+
+<h1>Autores</h1><br>
+
+{% if autores %}
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Apellidos, Nombre</div>
+        <table class="table table-striped">
+            {% for autor in autores %}
+            <tr>
+                <td><a href="/libreria/autor/{{ autor.id }}">{{ autor.apellidos }}, {{ autor.nombre}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+    <strong>No hay autores.</strong><br><br>
+{% endif %}
+
+    <a href="/libreria/crear_autor/"><button type="button" class="btn btn-primary btn-sm">Crear autor</button></a>
+
+{%endblock%}
