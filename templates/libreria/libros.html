@@ -10,14 +10,14 @@
 
 {% if libros %}
 
-        <table class="table table-condensed table-striped">
+        <table class="table table-nonfluid table-striped">
             <thead>
                 <tr class="active">
-                    <td>Título</td>
-                    <td>Autor</td>
-                    <td>Fecha</td>
-                    <td>Género</td>
-                    <td>Estantería</td>
+                    <td class="col-sm-2">Título</td>
+                    <td class="col-sm-2">Autor</td>
+                    <td class="col-sm-2">Fecha</td>
+                    <td class="col-sm-2">Género</td>
+                    <td class="col-sm-2">Estantería</td>
                 </tr>
             </thead>
             {% for libro in libros %}
@@ -43,7 +43,7 @@
                         <button type="button" class="btn last btn-sm"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i>
                         </button>
                         <select class="pagesize input-mini" title="Select page size">
-                            <option selected="selected" value="2">2</option>
+                            <option selected="selected" value="10">10</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                             <option value="10000">10000</option>
