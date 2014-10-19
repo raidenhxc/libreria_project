@@ -23,6 +23,7 @@ def decode_url(str):
     return str.replace('_', ' ')
 
 
+@login_required
 def index(request):
     context = RequestContext(request)
     context_dict = {'prueba': 'prueba'}

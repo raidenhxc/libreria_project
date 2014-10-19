@@ -6,6 +6,8 @@
 
 <h1>Libros</h1><br>
 
+
+
 {% if libros %}
 
         <table class="table table-condensed table-striped">
@@ -27,7 +29,47 @@
                 <td>{{ libro.estanteria}}</td>
             </tr>
             {% endfor %}
+
+            <tfoot>
+                <tr>
+                    <th colspan="5" class="ts-pager form-horizontal">
+                        <button type="button" class="btn first btn-sm"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i>
+                        </button>
+                        <button type="button" class="btn prev btn-sm"><i class="icon-arrow-left glyphicon glyphicon-backward"></i>
+                        </button>	<span class="pagedisplay"></span>
+                        <!-- this can be any element, including an input -->
+                        <button type="button" class="btn next btn-sm"><i class="icon-arrow-right glyphicon glyphicon-forward"></i>
+                        </button>
+                        <button type="button" class="btn last btn-sm"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i>
+                        </button>
+                        <select class="pagesize input-mini" title="Select page size">
+                            <option selected="selected" value="2">2</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="10000">10000</option>
+                        </select>
+                        <select class="pagenum input-mini" title="Select page number"></select>
+                    </th>
+                </tr>
+            </tfoot>
         </table>
+
+
+
+
+        <script>
+            $("table").tablesorter({
+                theme: "bootstrap",
+                widthFixed: true,
+                headerTemplate: '{content} {icon}',
+                widgets: ["uitheme", "filter", "zebra"],
+            })
+                .tablesorterPager({
+                container: $(".ts-pager"),
+                cssGoto: ".pagenum",
+                output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
+            });
+        </script>
 
 {% else %}
     <strong>No hay libros registrados.</strong><br><br>

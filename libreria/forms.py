@@ -5,6 +5,7 @@ from libreria.models import Autor, Genero, Estanteria, Libro, UserProfile
 from django.contrib.auth.models import User
 import datetime
 
+
 class crear_autor_form(forms.ModelForm):
     nombre = forms.CharField(max_length=128, help_text="Nombre: ")
     apellidos = forms.CharField(max_length=128, help_text="Apellidos: ")
@@ -30,7 +31,7 @@ class crear_estanteria_form(forms.ModelForm):
 
 class crear_libro_form(forms.ModelForm):
     nombre = forms.CharField(max_length=128, help_text="Nombre: ")
-    fecha_publicacion = forms.DateField(initial=datetime.date.today, input_formats=['%d/%m/%Y'], widget=forms.DateInput(format='%d/%m/%Y'), help_text="Fecha: ")
+    fecha_publicacion = forms.IntegerField(help_text="Año de publicación: ")
     autor = forms.ModelChoiceField(queryset=Autor.objects.all(), help_text="Autor: ")
     genero = forms.ModelChoiceField(queryset=Genero.objects.all(), help_text="Género: ")
     estanteria = forms.ModelChoiceField(queryset=Estanteria.objects.all(), help_text="Estantería: ")

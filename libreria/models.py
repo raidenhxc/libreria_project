@@ -29,7 +29,7 @@ class Estanteria(models.Model):
 
 class Libro(models.Model):
     nombre = models.CharField(max_length=128, unique=True)
-    fecha_publicacion = models.DateField()
+    fecha_publicacion = models.IntegerField(default=0)
     autor = models.ForeignKey(Autor, on_delete=models.PROTECT)
     genero = models.ForeignKey(Genero, on_delete=models.PROTECT)
     estanteria = models.ForeignKey(Estanteria, on_delete=models.PROTECT)
@@ -37,6 +37,8 @@ class Libro(models.Model):
     def __unicode__(self):
         return self.nombre
 
+class UltimaLectura(models.Model):
+    fecha = models.DateField()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
